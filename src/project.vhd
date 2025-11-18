@@ -27,7 +27,7 @@ end entity tt_um_example;
 
 -- shift register
 architecture rtl of tt_um_example is
-    signal reg : std_ulogic_vector(7 downto 0);
+    signal reg : std_ulogic_vector(7 downto 0) := (others => '0');
 begin
     
     process (clk, rst_n)
@@ -41,5 +41,6 @@ begin
     end process;
 
     uo_out <= reg;
-
+    uio_out <= (others => 'Z');
+    uio_oe <= (others => 'Z');
 end architecture rtl;
