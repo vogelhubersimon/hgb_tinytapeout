@@ -17,12 +17,7 @@ module tt_um_example(ui_in, uio_in, ena, clk, rst_n, uo_out, uio_out, uio_oe);
   wire [7:0] uio_out;
   output [7:0] uio_oe;
   wire [7:0] uio_oe;
-  wire [7:0] _0_;
-  wire [7:0] result;
-  assign _0_ = ui_in + uio_in;
-  assign result = _0_;
-  assign uo_out = result;
+  assign uo_out = 8'hzz;
   assign uio_out = 8'hzz;
   assign uio_oe = 8'hzz;
-  wire _unused = &{ena, clk, rst_n, 1'b0};
 endmodule

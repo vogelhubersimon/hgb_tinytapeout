@@ -25,9 +25,19 @@ entity tt_um_example is
     );
 end entity tt_um_example;
 
+-- shift register
 architecture rtl of tt_um_example is
-    signal result : unsigned(7 downto 0) := (others => '0');
+    signal reg : std_ulogic_vector(7 downto 0);
 begin
-    result <= unsigned(ui_in) + unsigned(uio_in);
-    uo_out <= std_logic_vector(result);
+    
+    process (clk, rst_n)
+    begin
+        if rst_n = '0' then
+            reg <= (others => '0');
+        else
+            reg(7) <= ui_in(0);
+            reg(6 downto 0) <= reg(7 downto 1);
+        end if;
+    end process;
+
 end architecture rtl;
