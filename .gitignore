@@ -3,6 +3,7 @@
 *.vcd
 *.fst
 *.fst.hier
+.vscode
 runs
 tt_submission
 src/user_config.json
