@@ -13,8 +13,6 @@ All the following were tested on Ubuntu. Try at your own risk :)
 [**OSS CAD Suite**](https://github.com/YosysHQ/oss-cad-suite-build)  
 This is needed for Synthesis. Download the latest release and add the `bin` folder to your PATH. This suite includes Yosys(Open Synthesis tool) and a special build of GHDL(Yosys plugin for VHDL support).
 
-[**Magic VLSI**](http://opencircuitdesign.com/magic/)
-
 **Github Actions**  
 This repository uses github actions to run tests, generate documentation and build the gds file (The file that is used by the foundry to produce the chip).
 
