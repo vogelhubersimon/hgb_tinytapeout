@@ -1,6 +1,5 @@
-/*
- * Copyright (c) 2024 Your Name
- * SPDX-License-Identifier: Apache-2.0
+/* THIS IS THE INTERFACE PROVIDED BY TINYTAPOUT
+ * THIS FILE IS NOT BEEING USED - IT IS ONLY HERE AS A REFERENCE
  */
 
 `default_nettype none

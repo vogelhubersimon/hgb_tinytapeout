@@ -1,42 +1,32 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
+![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
+# HGB TinyTapeout
 
-# Tiny Tapeout Verilog Project Template
+## Overview
 
-- [Read the documentation for project](docs/info.md)
+This is the repository for the HGB TinyTapeout project. The goal of this project is to create a custom IC using the [TinyTapeout](https://tinytapeout.com/) Project. 
 
-## What is Tiny Tapeout?
+## Installation
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+All the following were tested on Ubuntu. Try at your own risk :)
 
-To learn more and get started, visit https://tinytapeout.com.
 
-## Set up your Verilog project
+[**OSS CAD Suite**](https://github.com/YosysHQ/oss-cad-suite-build)  
+This is needed for Synthesis. Download the latest release and add the `bin` folder to your PATH. This suite includes Yosys(Open Synthesis tool) and a special build of GHDL(Yosys plugin for VHDL support).
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+[**Magic VLSI**](http://opencircuitdesign.com/magic/)
 
-The GitHub action will automatically build the ASIC files using [LibreLane](https://www.zerotoasiccourse.com/terminology/librelane/).
+**Github Actions**  
+This repository uses github actions to run tests, generate documentation and build the gds file (The file that is used by the foundry to produce the chip).
 
-## Enable GitHub actions to build the results page
+You can create your own branch and push changes to it. The actions will run automatically. If the actions pass you can look at the generated gds file in the artifacts of the gds build action.
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+**Building VHDL files**  
+run `make` inside the `src` folder to convert VHDL files to Verilog files. Its important to use the toplevel [entity](src/vhdl/project.vhd) provided in the Makefile (the external pin layout is specified by TinyTapeout).
 
-## Resources
+*This process of converting vhdl into verilog has not been tested thoroughly.*
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
+If you add source files please make sure to update the [`info.yaml`](info.yaml).
 
-## What next?
+## Contributing
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+If you are part of the hgb_tinytapout team you can create you own branch and try out the process. After pushing your changes the github actions will run automatically (pls do not push into main as of right now).
