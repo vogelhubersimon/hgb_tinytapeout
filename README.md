@@ -7,7 +7,7 @@ This is the repository for the HGB TinyTapeout project. The goal of this project
 
 ## Installation
 
-All the following were tested on Ubuntu. Try at your own risk :)
+All the following were tested with WSL (Ubuntu). Try at your own risk :)
 
 
 [**OSS CAD Suite**](https://github.com/YosysHQ/oss-cad-suite-build)  
