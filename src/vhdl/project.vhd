@@ -29,14 +29,14 @@ end entity tt_um_example;
 architecture rtl of tt_um_example is
     
     constant bit_width : natural  := 8;
-    constant ram_bytes : natural := 256;
+    constant ram_bytes : natural := 128;
     type aRam is array (0 to ram_bytes-1) of std_ulogic_vector(7 downto 0);
 
     -- Example control: use uio_in for address
     signal address : unsigned(7 downto 0);
     signal write_enable : std_ulogic;
     signal sRam : aRam := (others => (others => '0'));
-    
+
 begin
     -- Example mapping (adjust based on your needs):
     -- ui_in = data to write
@@ -55,6 +55,7 @@ begin
             if write_enable = '1' then
                 sRam(to_integer(address)) <= ui_in;
             end if;
+
             -- Read operation
             uo_out <= sRam(to_integer(address));
         end if;
