@@ -27,20 +27,23 @@ end entity tt_um_example;
 
 -- shift register
 architecture rtl of tt_um_example is
-    signal reg : std_ulogic_vector(7 downto 0) := (others => '0');
+    
+    constant bit_width : natural  := 8;
+    constant ram_bytes : natural := 265;
+    type aByte is array (bit_width-1 downto 0) of std_ulogic;
+    type aRam is array (0 to ram_bytes-1) of aByte;
+
+    -- signals
+    signal sRam : aRam := (others => (others => '0'));
 begin
     
     process (clk, rst_n)
     begin
         if rst_n = '0' then
-            reg <= (others => '0');
+            sRam <= (others => (others => '0'));
         elsif rising_edge(clk) then
-            reg(7) <= ui_in(0);
-            reg(6 downto 0) <= reg(7 downto 1);
+            uo_out <= std_ulogic_vector(unsigned(ui_in));
         end if;
     end process;
 
-    uo_out <= reg;
-    uio_out <= (others => 'Z');
-    uio_oe <= (others => 'Z');
 end architecture rtl;

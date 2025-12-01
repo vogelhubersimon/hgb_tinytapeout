@@ -18,14 +18,15 @@ module tt_um_example(ui_in, uio_in, ena, clk, rst_n, uo_out, uio_out, uio_oe);
   output [7:0] uio_oe;
   wire [7:0] uio_oe;
   wire _0_;
-  reg [7:0] _1_ = 8'h00;
-  wire [7:0] \reg ;
-  always @(posedge clk, posedge _0_)
-    if (_0_) _1_ <= 8'h00;
-    else _1_ <= { ui_in[0], \reg [7:1] };
+  wire _1_;
+  wire [7:0] _2_;
+  reg [7:0] _3_;
+  assign _1_ = ~ _0_;
+  assign _2_ = _1_ ? ui_in : _3_;
+  always @(posedge clk)
+    _3_ <= _2_;
   assign _0_ = ~ rst_n;
-  assign \reg  = _1_;
-  assign uo_out = \reg ;
+  assign uo_out = _3_;
   assign uio_out = 8'hzz;
   assign uio_oe = 8'hzz;
 endmodule
