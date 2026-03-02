@@ -290,8 +290,14 @@ int parse_program(char const * const file_path, program_mem_t *program_memory)
     char line_buffer[LINE_BUFFER_SIZE];
     size_t line_counter = 0;
     
-    while (fgets(line_buffer, LINE_BUFFER_SIZE, source_file) != NULL && line_counter < INSTR_COUNT)
+    while (fgets(line_buffer, LINE_BUFFER_SIZE, source_file) != NULL)
     {
+        if(line_counter >= INSTR_COUNT) {
+            fprintf(ERROR_STREAM, "Warning: Program memory limit of %d instructions reached. Remaining lines will be ignored.\n", INSTR_COUNT);
+            fclose(source_file);
+            return 0;
+        }
+
         line_buffer[strcspn(line_buffer, "\n")] = '\0';
 
         if (parse_instrucion(&(*program_memory)[line_counter], line_buffer) != 0)
@@ -437,6 +443,9 @@ static int parse_instrucion (instruction_t *instr, char* line)
         return -1;
     }
 
+    // no check if the number of operands exceeds the limit, only a bad array access
+    //operand counter get increased but never checked
+
     size_t operand_counter = 0;
     char* next_token = strtok(NULL, " "); 
 
@@ -444,6 +453,11 @@ static int parse_instrucion (instruction_t *instr, char* line)
     {
         uint8_t reg = 0;
         uint8_t imm = 0;
+
+        if(operand_counter >= OPERAND_COUNT) {
+            fprintf(ERROR_STREAM, "Warning: Operand limit of %d exceeded for instruction \"%s\". Remaining operands will be ignored.\n", OPERAND_COUNT, instr->identfier);
+            return 0;
+        }
         
         if (get_register(next_token, &reg) == 0)
         {

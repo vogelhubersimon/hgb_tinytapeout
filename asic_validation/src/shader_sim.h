@@ -5,6 +5,7 @@
 #define SCREEN_HEIGHT 40
 #define PIXEL_SCALE 10
 
+// why defines?
 #define STB_IMAGE_IMPLEMENTATION
 #include "../third_party/stb_image.h"
 

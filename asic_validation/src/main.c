@@ -44,5 +44,5 @@ int main()
     do{}
     while(update() == EXIT_SUCCESS);
     
-    return EXIT_SUCCESS;
+    return EXIT_FAILURE; 
 }

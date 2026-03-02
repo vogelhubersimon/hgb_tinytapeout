@@ -12,16 +12,17 @@
 
 #define ERROR_STREAM stderr
 #define OUTPUT_STREAM stdout
-#define REG_COUNT  8        // Number of registers in CPU
+#define REG_COUNT  8        // Number of registers in CPU // Maybe a warning message if the limit is reached
 #define REG_BIT_WIDTH 6     // Number of bits per register
-#define INSTR_COUNT 20      // Number of instructions in program memory
+#define INSTR_COUNT 20      // Number of instructions in program memory //Maybe a warning message if the limit is reached
 #define LINE_BUFFER_SIZE 64 // Max line length in source file
+#define OPERAND_COUNT 3     // Max number of operands per instruction
 
 // Representation of an instruction
 // Data read from file gets parsed into this struct
 typedef struct {
     char *identfier;      // string representation of instruciton
-    uint8_t operand[3];   // up to 3 operands per instruciton
+    uint8_t operand[OPERAND_COUNT];   // up to 3 operands per instruciton
 } instruction_t;
 
 typedef instruction_t program_mem_t[INSTR_COUNT];
